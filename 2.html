@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <h2>夏日炎炎！✨🐱👓👀</h2>
+    <div id='haha'></div>
+    <script>
+        function getUrl(name){
+            var url=location.search;
+            console.log(url)
+            var re=/[\?&](\w+)=([^\?&]+)/g;
+            var str='';
+            url.replace(re,function($0,$1,$2){
+                if($1===name){
+                    return  str=$2;
+                }
+            })
+            return str;
+            }
+        var html='<ul>';
+        html+='<li>'+getUrl('yh')+'</li><li>'+getUrl('sj')+'</li><li>'+getUrl('yx')+'</li><li>'+getUrl('mm')+'</li><li>'+getUrl('qm')+'</li>';
+        html+='</ul>';
+        haha.innerHTML=html;
+    </script>
+</body>
+</html>

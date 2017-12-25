@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        input,button{
+            margin-top:15px;
+        }
+    </style>
+</head>
+<body>
+    <form name="fm" action="2.html">
+        用户名 ：<input type="text" name="yh"><br/>
+        手机号：<input type="text" name="sj"><br/>
+        邮箱：<input type="text" name="yx"><br/>
+        密码：<input type="text" name="mm"><br/>
+        确认密码：<input type="text" name="qm"><br/>
+        <button>登陆</button>
+    </form>
+    <script>
+        var forms=document.forms['fm'];
+        var yh=forms.yh;
+        var sj=forms.sj;
+        var yx=forms.yx;
+        var mm=forms.mm;
+        var qm=forms.qm;
+        var btn=forms[5];
+        function Default(ev){
+            if(ev.preventDefault){
+                ev.preventDefault();
+            }else{
+                ev.returnValue=false;
+            }
+        }
+        var re=/^1[3578]\d{9}$/;
+        var re1=/^\w+@[0-9A-Z]+(\.[a-z]+){1,3}$/i;
+        var re2=/^\d+$/;
+        var re3=/^[a-z]+$/i;
+        forms.onsubmit=function(ev){
+            var ev=ev||window.event;
+            var error='';
+            if(re2.test(yh.value)){
+                error='用户名不能是纯数字';
+            }else if(re3.test(yh.value)){
+                error='用户名不能是纯字母';
+            }else if(!re.test(sj.value)){
+                error='手机号格式不正确';
+            }else if(!re1.test(yx.value)){
+                error='邮箱格式不正确';
+            }else if(mm.value!=qm.value){
+                error='密码输入不正确';
+            }
+            if(error){
+                alert(error);
+                Default(ev);
+            }
+        }
+    </script>
+</body>
+</html>
